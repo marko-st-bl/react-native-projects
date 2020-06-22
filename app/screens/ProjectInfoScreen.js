@@ -92,13 +92,14 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     participantContainer: {
-        flexWrap: 'wrap',
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         width: 160,
         height: '100%',
         backgroundColor: colors.surface,
         borderRadius: 10,
+        margin: 5,
     },
     subHeaderContainer: {
         flex: 1,
