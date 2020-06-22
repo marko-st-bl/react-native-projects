@@ -16,6 +16,7 @@ import ActivitiesScreen from './app/screens/ActivitiesScreen';
 import FinancesScreen from './app/screens/FinancesScreen';
 import StateScreen from './app/screens/StateScreen';
 import PartDetailsScreen from './app/screens/PartDetailsScreen';
+import ActivityDetailsScreen from './app/screens/ActivityDetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,7 @@ export default function App() {
         <Stack.Screen name="Activities" component={ActivitiesScreen} />
         <Stack.Screen name="Parts" component={StateScreen} />
         <Stack.Screen name="Part Details" component={PartDetailsScreen} />
+        <Stack.Screen name="Activity Details" component={ActivityDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

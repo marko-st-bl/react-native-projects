@@ -3,30 +3,38 @@ import { View, StyleSheet, Text, TouchableOpacity, TouchableNativeFeedback, Safe
 
 import colors from '../config/colors';
 
-//const [username, setUsername] = useState('');
-//const [password, setPassword] = useState('');
-
 function LoginScreen({navigation}){
 
     const [usernameText, setUsername] = useState('');
     const [passwordText, setPassword] = useState('');
 
-    const [isLoading, setLoading] = useState(true);
+    const [authKey, setAuthKey] = useState({});
 
-    function login(){
-        let response = fetch('http://192.168.100.5/login/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                username: usernameText,
-                password: passwordText,
-            })
-        }).then((response) => response.json()).catch((error) => {
-            console.error(error);
+
+    async function login() {
+        // Default options are marked with *
+        url = 'http://pisio.etfbl.net/~markos/rest/web/api/loginn';
+        data = {username: usernameText, password: passwordText};
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
-        if(response){
-            alert(response);
+        console.log(response.status);
+        if(response.status == 200){
+            response.json().then(res => {setAuthKey(res)
+              }).catch((error) => {
+                console.error('Error:', error);
+              });
+            navigation.navigate('Projects', authKey);
+        }else if (response.status >= 400){
+            alert('Couldn\'t log in');
         }
-    }
+      }
 
     return (
         <View style={styles.container}>
@@ -39,6 +47,7 @@ function LoginScreen({navigation}){
                 underlineColorAndroid = 'rgba(0,0,0,0)'
                 placeholder = 'Username'
                 textContentType = 'username'
+                autoCapitalize = 'none'
                 onChangeText={usernameText => setUsername(usernameText)}/>
                 </View>
                 <View style={styles.inputBoxContainer}>
@@ -46,11 +55,12 @@ function LoginScreen({navigation}){
                 underlineColorAndroid = 'rgba(0,0,0,0)'
                 placeholder = 'Password'
                 textContentType = 'password'
+                autoCapitalize = 'none'
                 secureTextEntry = {true}
                 onChangeText={passwordText => setPassword(passwordText)}/>
                 </View>
                 <TouchableOpacity style={styles.loginButton}
-                onPress = {() => (navigation.navigate('Projects'))}>
+                onPress = {() =>login()}>
                     <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
             </View>

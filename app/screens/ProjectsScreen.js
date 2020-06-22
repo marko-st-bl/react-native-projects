@@ -3,10 +3,11 @@ import { View, StyleSheet, Text, TouchableOpacity, TouchableNativeFeedback, Safe
 
 import colors from '../config/colors';
 
-function ProjectsScreen({navigation}) {
+function ProjectsScreen({route, navigation}) {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const {authKey} = route.params;
 
     useEffect(() => {
         fetch('http://pisio.etfbl.net/~markos/rest/web/projects', {
@@ -30,7 +31,7 @@ function ProjectsScreen({navigation}) {
                 item
               })}>
                 <View style={styles.itemContainer}>
-                  <Text style={styles.itemText}>{item.name}</Text>
+            <Text style={styles.itemText}>{item.name}</Text>
                 </View>
               </TouchableOpacity>
           )}

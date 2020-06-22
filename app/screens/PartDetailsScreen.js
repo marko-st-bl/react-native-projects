@@ -23,7 +23,7 @@ function PartDetailsScreen({ route, navigation }) {
             <View style={styles.body}>
                 <View style={styles.progressContainer}>
                     <Text style={styles.titleText}>progress:</Text>
-                    <Text style={styles.progressText}>{item['progress'] * 100} %</Text>
+                    <Text style={styles.progressText}>{item['progress'] * 100}%</Text>
                     <Progress.Bar width={330} progress={parseFloat(item['progress'])} color={colors.primary} />
                 </View>
             </View>
@@ -53,21 +53,19 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        //backgroundColor: 'red',
     },
     body: {
         flex: 2,
-        //backgroundColor: 'blue',
     },
     footer: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        //backgroundColor: 'green',
     },
     dateContainer: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         width: 120,
         backgroundColor: colors.surface,
         borderRadius: 10,
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     },
     boxText: {
         color: colors.onBackground,
-        fontSize: 20,
+        fontSize: 24,
         paddingTop: 20,
     }
 })

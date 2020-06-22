@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
     },
     income: {
-      backgroundColor: '#77d349',
+      backgroundColor: '#018786',
       flexDirection: 'row',
       justifyContent: 'flex-start',
       width: Dimensions.get('window').width,
